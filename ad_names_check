@@ -1,0 +1,160 @@
+
+
+import my_methods_csv as mm
+
+
+if __name__ == "__main__":
+
+
+# dir
+
+    path_raw_read = r"C:\Revenue & Cost\DOC_2025\Ad Cost 2025\Jan_2025"
+    path_read = mm.path_edit(path_raw_read)
+    dir_list_cost = mm.os.listdir(path_read)
+
+
+# common tag
+
+    year = "2024"
+    usd_rate = 126.00 # dollar
+
+    date_tag = "31"
+    month_tag = "Jan"
+        
+    type_report = "daily" # small case
+    month = "Month: Novemeber, 2023" # update u_tag
+    
+    date = date_tag + "-" + month_tag + "-" + year 
+        
+
+
+# Meta
+
+    file_type = ".csv"
+    #null_type = "New"
+    group_tag = "Nagorik-"
+    tag_name_meta = "actions:offsite_conversion.custom"
+    status = "active"
+    date_tag_meta = "-" + date_tag + "-"
+
+    u_tag_meta = "-Ads-1-Oct-202331-Oct-2023.csv" # for month report / Specific report
+        
+    l = []
+    l_meta = []
+    l_google = []
+
+    
+    if type_report == "daily":
+        for x in dir_list_cost:
+            if file_type in x and group_tag in x and month_tag in x and date_tag_meta in x:# and "_u" in x:# and u_tag_meta in x:
+                a = path_read + "//" + x
+                l.append([a])
+                
+    elif type_report == "monthly":
+        for x in dir_list_cost:
+            if u_tag_meta in x:
+                a = path_read + "//" + x
+                l.append([a])
+
+        
+    for i in range(len(l)):
+        print(l[i][0].split("//")[-1])
+    print("")
+ 
+    for f in range(len(l)):
+        
+        file = l[f][0]
+        data = mm.read_data(file)
+
+        for row in range(1, len(data)):
+
+            ad_name = data[row][2]
+            ad_status = data[row][3]
+            ad_set_name = data[row][4]
+            ad = (ad_name + " + " + ad_set_name).lower()
+            
+            conv = data[row][11]
+            result_indicator = data[row][12]
+            reach = data[row][13]
+            cost = data[row][19]
+
+            if ad_status == status:
+                l_meta.append(ad)
+    
+    
+    print("")
+    l_m = list(set(l_meta))
+    for i in range(len(l_m)):
+        a = l_m[i]
+        print(a)
+        
+    print("")
+    print(len(l_m))
+    print(len(l_meta))
+    print("")
+
+# Google 
+
+    file_type = ".csv"
+    null_type = ")"
+    group_tag = "Campaign report"
+    
+    u_tag_google = "Campaign report month" # for month report / Specific report
+    status = "Removed" # != not equal to
+    
+    tag_name_google = "Total: Account"
+    tag_type = "Performance Max"
+
+    l_g = []
+    l_cost_g = []
+    l__g = []
+
+
+    if type_report == "daily":
+        for x in dir_list_cost:
+            if file_type in x and null_type not in x and group_tag in x and month_tag in x and date_tag in x: # and u_tag_google in x:
+                a = path_read + "//" + x
+                l_g.append([a])
+                
+    elif type_report == "monthly":
+        for x in dir_list_cost:
+            if u_tag_google in x:
+                a = path_read + "//" + x
+                l_g.append([a])
+
+    for i in range(len(l_g)):
+        print(l_g[i][0].split("//")[-1])
+    print("")
+     
+    for f in range(len(l_g)):
+        
+        file = l_g[f][0]
+        data = mm.read_data(file)
+
+        for row in range(3,len(data)):
+
+            campaign_status = data[row][0]
+            campaign = data[row][1]
+            ad_google = campaign.lower()
+
+            ad_status = data[row][6]
+            ad_type = data[row][9]
+            impression = data[row][10]
+            cost = data[row][14]
+            # = data[row][21]
+            conv = data[row][22]
+
+            if ad_status != status:
+                l_google.append(ad_google)
+
+    print("")
+    l_g = list(set(l_google))
+    for i in range(len(l_g)):
+        a = l_g[i]
+        print(a)
+        
+    print("")
+    print(len(l_g))
+    print(len(l_google))
+ 
+    
