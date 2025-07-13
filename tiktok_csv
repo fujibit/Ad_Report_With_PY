@@ -1,0 +1,533 @@
+
+
+import my_methods_csv as mm
+
+
+if __name__ == "__main__":
+
+    path_raw_read = r"C:\Revenue & Cost\DOC_2025\Ad Cost 2025\Mar 2025\tiktok_mar_24"
+    path_read = mm.path_edit(path_raw_read)
+    dir_list = mm.os.listdir(path_read)
+
+    path_raw_write = r"C:\Revenue & Cost\DOC_2025\Ad Cost 2025\Mar 2025"
+    path_write = mm.path_edit(path_raw_write)
+
+    tag = ".csv"
+    title_date = "2025-03-24"
+    usd = 154.00
+
+    l_test = []
+    
+    l = []
+    l_ratio = []
+    
+    l_deal = []
+
+    l_medha = []
+
+    l_quiztime = []
+    l_quizbd = []
+    l_quizgiri = []
+    l_quizmind = []
+    l_quizpro = []
+
+    l_shera = []
+    l_tukhor = []
+
+    l_tota = []
+
+    l_quizee = []
+    l_jeeto = []
+    l_quizchamp = []
+
+    l_tetris = []
+    l_npuzzle = []
+    l_gotham = []
+    l_surfing = []
+    l_panda = []
+    l_space = []
+    l_rise = []
+    l_runner = []
+    l_ninja = []
+    l_pong = []
+    l_samurai = []
+
+    l_ortho = []
+    l_ludo = []
+    l_dana = []
+
+    l_tomb = []
+    l_bubble = []
+    l_snow = []
+    l_ping = []
+    l_dash = []
+
+    l_hoophop = []
+    l_candy = []
+    l_heroic = []
+
+    l_shark = []
+    l_deen = []
+    l_water = []
+    l_word = []
+
+    l_quizbd = []
+
+    for x in dir_list:
+            if tag in x:
+                a = path_read + "//" + x
+                l.append([a])
+
+    #print(l)
+    print(len(l))
+    
+    for i in range(len(l)):
+        print(l[i][0].split("//")[-1])
+
+    print("")
+
+    for f in range(len(l)):
+
+        src = l[f][0]
+        #ad = src.split("//")[-1].lower()
+        data = mm.read_data(src)
+
+        for row in range(1,len(data)-1):
+            
+            campaign_name = data[row][0]
+            ad = campaign_name.lower()
+            #print(ad)
+            
+            primary_status = data[row][1]
+            campaign_budget = data[row][2]
+            
+            costt = data[row][3]
+            
+            if costt != "":
+                cost = float(costt)*usd
+            
+            cpc = data[row][4]
+            cpm = data[row][5]
+            impression = data[row][6]
+            click = data[row][7]
+            ctr = data[row][8]
+            conversion = data[row][9]
+            
+            cpa = data[row][10]
+            cvr = data[row][11]
+            results = data[row][12]
+            cost_per_results = data[row][13]
+            results_rate = data[row][14]
+            currency = data[row][15]
+
+            if ("dealfinder" in ad or "deal finder" in ad):
+                l_deal.append([ cost, conversion, impression, click ])
+
+            if "medha" in ad: 
+                l_medha.append([ cost, conversion, impression, click ])
+
+            if ("quiztime" in ad or "qt" in ad or "quiz time" in ad):
+                l_quiztime.append([ cost, conversion, impression, click ])
+
+            if ("quizbd" in ad or "quiz bd" in ad ):
+                l_quizbd.append([ cost, conversion, impression, click ])
+
+            if ("quizgiri" in ad or "quiz giri" in ad or "qg" in ad ):
+                l_quizgiri.append([ cost, conversion, impression, click ])
+
+                
+            if ("quizmind" in ad or "quiz mind" in ad or "qm" in ad):
+                l_quizmind.append([ cost, conversion, impression, click ])
+
+            if ("quiz pro" in ad or "quizpro" in ad):
+                l_quizpro.append([ cost, conversion, impression, click ])
+
+            if "shera" in ad:
+                l_shera.append([ cost, conversion, impression, click ])
+
+            if "tukhor" in ad or "tukhr" in ad:
+                l_tukhor.append([ cost, conversion, impression, click ])
+
+            if ("tota" in ad and 'total' not in ad):
+                l_tota.append([ cost, conversion, impression, click ])
+
+            if ("quizee" in ad or 'quize' in ad):
+                l_quizee.append([ cost, conversion, impression, click ])
+
+            if "jeeto" in ad:
+                l_jeeto.append([ cost, conversion, impression, click ])
+
+            if ("quizchamp" in ad or "quiz champ" in ad or "qc" in ad):
+                l_quizchamp.append([ cost, conversion, impression, click ])
+
+            if "tetris" in ad:
+                l_tetris.append([ cost, conversion, impression, click ])
+
+            if "npuzzle" in ad:
+                l_npuzzle.append([ cost, conversion, impression, click ])
+
+            if "gotham" in ad:
+                l_gotham.append([ cost, conversion, impression, click ])
+
+            if "surfing" in ad:
+                l_surfing.append([ cost, conversion, impression, click ])
+
+            if "panda" in ad:
+                l_panda.append([ cost, conversion, impression, click ])
+
+            if "space" in ad:
+                l_space.append([ cost, conversion, impression, click ])
+
+            if "rise" in ad:
+                l_rise.append([ cost, conversion, impression, click ])
+
+            if "super runner" in ad:
+                l_runner.append([ cost, conversion, impression, click ])
+
+            if "ninja" in ad:
+                l_ninja.append([ cost, conversion, impression, click ])
+
+            if "circle pong" in ad or "c.pong" in ad:
+                l_pong.append([ cost, conversion, impression, click ])
+
+            if "samurai" in ad:
+                l_samurai.append([ cost, conversion, impression, click ])
+
+            if "ortho" in ad:
+                l_ortho.append([ cost, conversion, impression, click ])
+
+            if "ludo" in ad:
+                l_ludo.append([ cost, conversion, impression, click ])
+
+##            if "dana" in ad or "quizpro" in ad  or "quiz pro" in ad or "valene" in ad or "valane" in ad:  
+##                l_.append([ cost, conversion, impression, click ])
+
+            if "tomb" in ad:
+                l_tomb.append([ cost, conversion, impression, click ])
+
+            if "bubble" in ad:
+                l_bubble.append([ cost, conversion, impression, click ])
+
+            if "snow" in ad:
+                l_snow.append([ cost, conversion, impression, click ])
+
+            if ("ping pong" in ad or "pingpong" in ad):
+                l_ping.append([ cost, conversion, impression, click ])
+
+            if "heroic" in ad:
+                l_heroic.append([ cost, conversion, impression, click ])
+
+            if ("hoophop" in ad or " hop" in ad):
+                l_hoophop.append([ cost, conversion, impression, click ])
+
+            if "candy" in ad:
+                l_candy.append([ cost, conversion, impression, click ])
+
+            if "shark" in ad:
+                l_shark.append([ cost, conversion, impression, click ])
+
+            if "deen" in ad:
+                l_deen.append([ cost, conversion, impression, click ])
+
+            if "water" in ad:
+                l_water.append([ cost, conversion, impression, click ])
+
+            if "word" in ad:
+                l_word.append([ cost, conversion, impression, click ])
+
+
+##            if "quizbd" in ad or "quiz bd" in ad:
+##                l_quizbd.append([ cost, conversion, impression, click ])
+
+##            if ("" in  ad):
+##                l_test.append([ cost, conversion, impression, click ])
+##                
+
+
+    cost_deal = mm.sum_list_array_n(l_deal,0)
+    cost_medha = mm.sum_list_array_n(l_medha,0)
+    cost_quiztime = mm.sum_list_array_n(l_quiztime,0)
+    cost_quizbd = mm.sum_list_array_n(l_quizbd,0)
+    cost_quizgiri = mm.sum_list_array_n(l_quizgiri,0)
+    cost_quizmind = mm.sum_list_array_n(l_quizmind,0)
+    cost_quizpro = mm.sum_list_array_n(l_quizpro,0)
+    cost_shera = mm.sum_list_array_n(l_shera,0)
+    cost_tukhor = mm.sum_list_array_n(l_tukhor,0)
+    cost_tota = mm.sum_list_array_n(l_tota,0)
+    cost_quizee = mm.sum_list_array_n(l_quizee,0)
+    cost_jeeto = mm.sum_list_array_n(l_jeeto,0)
+    cost_quizchamp = mm.sum_list_array_n(l_quizchamp,0)
+    cost_tetris = mm.sum_list_array_n(l_tetris,0)
+    cost_npuzzle = mm.sum_list_array_n(l_npuzzle,0)
+    cost_gotham = mm.sum_list_array_n(l_gotham,0)
+    cost_surfing = mm.sum_list_array_n(l_surfing,0)
+    cost_panda = mm.sum_list_array_n(l_panda,0)
+    cost_space = mm.sum_list_array_n(l_space,0)
+    cost_rise = mm.sum_list_array_n(l_rise,0)
+    cost_runner = mm.sum_list_array_n(l_runner,0)
+    cost_ninja = mm.sum_list_array_n(l_ninja,0)
+    cost_pong = mm.sum_list_array_n(l_pong,0)
+    cost_samurai = mm.sum_list_array_n(l_samurai,0)
+    cost_ortho = mm.sum_list_array_n(l_ortho,0)
+    cost_ludo = mm.sum_list_array_n(l_ludo,0)
+    cost_tomb = mm.sum_list_array_n(l_tomb,0)
+    cost_bubble = mm.sum_list_array_n(l_bubble,0)
+    cost_snow = mm.sum_list_array_n(l_snow,0)
+    cost_ping = mm.sum_list_array_n(l_ping,0)
+    cost_heroic = mm.sum_list_array_n(l_heroic,0)
+    cost_hoophop = mm.sum_list_array_n(l_hoophop,0)
+    cost_candy = mm.sum_list_array_n(l_candy,0)
+    cost_shark = mm.sum_list_array_n(l_shark,0)
+    cost_deen = mm.sum_list_array_n(l_deen,0)
+    cost_water = mm.sum_list_array_n(l_water,0)
+    cost_word = mm.sum_list_array_n(l_word,0)
+    #cost_quizbd = mm.sum_list_array_n(l_quizbd,0)
+
+    
+    conversion_deal = mm.sum_list_array_n(l_deal,1)
+    conversion_medha = mm.sum_list_array_n(l_medha,1)
+    conversion_quiztime = mm.sum_list_array_n(l_quiztime,1)
+    conversion_quizbd = mm.sum_list_array_n(l_quizbd,1)
+    conversion_quizgiri = mm.sum_list_array_n(l_quizgiri,1)
+    conversion_quizmind = mm.sum_list_array_n(l_quizmind,1)
+    conversion_quizpro = mm.sum_list_array_n(l_quizpro,1)
+    conversion_shera = mm.sum_list_array_n(l_shera,1)
+    conversion_tukhor = mm.sum_list_array_n(l_tukhor,1)
+    conversion_tota = mm.sum_list_array_n(l_tota,1)
+    conversion_quizee = mm.sum_list_array_n(l_quizee,1)
+    conversion_jeeto = mm.sum_list_array_n(l_jeeto,1)
+    conversion_quizchamp = mm.sum_list_array_n(l_quizchamp,1)
+    conversion_tetris = mm.sum_list_array_n(l_tetris,1)
+    conversion_npuzzle = mm.sum_list_array_n(l_npuzzle,1)
+    conversion_gotham = mm.sum_list_array_n(l_gotham,1)
+    conversion_surfing = mm.sum_list_array_n(l_surfing,1)
+    conversion_panda = mm.sum_list_array_n(l_panda,1)
+    conversion_space = mm.sum_list_array_n(l_space,1)
+    conversion_rise = mm.sum_list_array_n(l_rise,1)
+    conversion_runner = mm.sum_list_array_n(l_runner,1)
+    conversion_ninja = mm.sum_list_array_n(l_ninja,1)
+    conversion_pong = mm.sum_list_array_n(l_pong,1)
+    conversion_samurai = mm.sum_list_array_n(l_samurai,1)
+    conversion_ortho = mm.sum_list_array_n(l_ortho,1)
+    conversion_ludo = mm.sum_list_array_n(l_ludo,1)
+    conversion_tomb = mm.sum_list_array_n(l_tomb,1)
+    conversion_bubble = mm.sum_list_array_n(l_bubble,1)
+    conversion_snow = mm.sum_list_array_n(l_snow,1)
+    conversion_ping = mm.sum_list_array_n(l_ping,1)
+    conversion_heroic = mm.sum_list_array_n(l_heroic,1)
+    conversion_hoophop = mm.sum_list_array_n(l_hoophop,1)
+    conversion_candy = mm.sum_list_array_n(l_candy,1)
+    conversion_shark = mm.sum_list_array_n(l_shark,1)
+    conversion_deen = mm.sum_list_array_n(l_deen,1)
+    conversion_water = mm.sum_list_array_n(l_water,1)
+    conversion_word = mm.sum_list_array_n(l_word,1)
+    #conversion_quizbd = mm.sum_list_array_n(l_quizbd,1)
+
+    impression_deal = mm.sum_list_array_n(l_deal,2)
+    impression_medha = mm.sum_list_array_n(l_medha,2)
+    impression_quiztime = mm.sum_list_array_n(l_quiztime,2)
+    impression_quizbd = mm.sum_list_array_n(l_quizbd,2)
+    impression_quizgiri = mm.sum_list_array_n(l_quizgiri,2)
+    impression_quizmind = mm.sum_list_array_n(l_quizmind,2)
+    impression_quizpro = mm.sum_list_array_n(l_quizpro,2)
+    impression_shera = mm.sum_list_array_n(l_shera,2)
+    impression_tukhor = mm.sum_list_array_n(l_tukhor,2)
+    impression_tota = mm.sum_list_array_n(l_tota,2)
+    impression_quizee = mm.sum_list_array_n(l_quizee,2)
+    impression_jeeto = mm.sum_list_array_n(l_jeeto,2)
+    impression_quizchamp = mm.sum_list_array_n(l_quizchamp,2)
+    impression_tetris = mm.sum_list_array_n(l_tetris,2)
+    impression_npuzzle = mm.sum_list_array_n(l_npuzzle,2)
+    impression_gotham = mm.sum_list_array_n(l_gotham,2)
+    impression_surfing = mm.sum_list_array_n(l_surfing,2)
+    impression_panda = mm.sum_list_array_n(l_panda,2)
+    impression_space = mm.sum_list_array_n(l_space,2)
+    impression_rise = mm.sum_list_array_n(l_rise,2)
+    impression_runner = mm.sum_list_array_n(l_runner,2)
+    impression_ninja = mm.sum_list_array_n(l_ninja,2)
+    impression_pong = mm.sum_list_array_n(l_pong,2)
+    impression_samurai = mm.sum_list_array_n(l_samurai,2)
+    impression_ortho = mm.sum_list_array_n(l_ortho,2)
+    impression_ludo = mm.sum_list_array_n(l_ludo,2)
+    impression_tomb = mm.sum_list_array_n(l_tomb,2)
+    impression_bubble = mm.sum_list_array_n(l_bubble,2)
+    impression_snow = mm.sum_list_array_n(l_snow,2)
+    impression_ping = mm.sum_list_array_n(l_ping,2)
+    impression_heroic = mm.sum_list_array_n(l_heroic,2)
+    impression_hoophop = mm.sum_list_array_n(l_hoophop,2)
+    impression_candy = mm.sum_list_array_n(l_candy,2)
+    impression_shark = mm.sum_list_array_n(l_shark,2)
+    impression_deen = mm.sum_list_array_n(l_deen,2)
+    impression_water = mm.sum_list_array_n(l_water,2)
+    impression_word = mm.sum_list_array_n(l_word,2)
+    #impression_quizbd = mm.sum_list_array_n(l_quizbd,2)
+
+    click_deal = mm.sum_list_array_n(l_deal,3)
+    click_medha = mm.sum_list_array_n(l_medha,3)
+    click_quiztime = mm.sum_list_array_n(l_quiztime,3)
+    click_quizbd = mm.sum_list_array_n(l_quizbd,3)
+    click_quizgiri = mm.sum_list_array_n(l_quizgiri,3)
+    click_quizmind = mm.sum_list_array_n(l_quizmind,3)
+    click_quizpro = mm.sum_list_array_n(l_quizpro,3)
+    click_shera = mm.sum_list_array_n(l_shera,3)
+    click_tukhor = mm.sum_list_array_n(l_tukhor,3)
+    click_tota = mm.sum_list_array_n(l_tota,3)
+    click_quizee = mm.sum_list_array_n(l_quizee,3)
+    click_jeeto = mm.sum_list_array_n(l_jeeto,3)
+    click_quizchamp = mm.sum_list_array_n(l_quizchamp,3)
+    click_tetris = mm.sum_list_array_n(l_tetris,3)
+    click_npuzzle = mm.sum_list_array_n(l_npuzzle,3)
+    click_gotham = mm.sum_list_array_n(l_gotham,3)
+    click_surfing = mm.sum_list_array_n(l_surfing,3)
+    click_panda = mm.sum_list_array_n(l_panda,3)
+    click_space = mm.sum_list_array_n(l_space,3)
+    click_rise = mm.sum_list_array_n(l_rise,3)
+    click_runner = mm.sum_list_array_n(l_runner,3)
+    click_ninja = mm.sum_list_array_n(l_ninja,3)
+    click_pong = mm.sum_list_array_n(l_pong,3)
+    click_samurai = mm.sum_list_array_n(l_samurai,3)
+    click_ortho = mm.sum_list_array_n(l_ortho,3)
+    click_ludo = mm.sum_list_array_n(l_ludo,3)
+    click_tomb = mm.sum_list_array_n(l_tomb,3)
+    click_bubble = mm.sum_list_array_n(l_bubble,3)
+    click_snow = mm.sum_list_array_n(l_snow,3)
+    click_ping = mm.sum_list_array_n(l_ping,3)
+    click_heroic = mm.sum_list_array_n(l_heroic,3)
+    click_hoophop = mm.sum_list_array_n(l_hoophop,3)
+    click_candy = mm.sum_list_array_n(l_candy,3)
+    click_shark = mm.sum_list_array_n(l_shark,3)
+    click_deen = mm.sum_list_array_n(l_deen,3)
+    click_water = mm.sum_list_array_n(l_water,3)
+    click_word = mm.sum_list_array_n(l_word,3)
+    #click_quizbd = mm.sum_list_array_n(l_quizbd,3)
+         
+    cpc_deal = mm.ratio_list_array_n(l_deal,0,1)
+    cpc_medha = mm.ratio_list_array_n(l_medha,0,1)
+    cpc_quiztime = mm.ratio_list_array_n(l_quiztime,0,1)
+    cpc_quizbd = mm.ratio_list_array_n(l_quizbd,0,1)
+    cpc_quizgiri = mm.ratio_list_array_n(l_quizgiri,0,1)
+    cpc_quizmind = mm.ratio_list_array_n(l_quizmind,0,1)
+    cpc_quizpro = mm.ratio_list_array_n(l_quizpro,0,1)
+    cpc_shera = mm.ratio_list_array_n(l_shera,0,1)
+    cpc_tukhor = mm.ratio_list_array_n(l_tukhor,0,1)
+    cpc_tota = mm.ratio_list_array_n(l_tota,0,1)
+    cpc_quizee = mm.ratio_list_array_n(l_quizee,0,1)
+    cpc_jeeto = mm.ratio_list_array_n(l_jeeto,0,1)
+    cpc_quizchamp = mm.ratio_list_array_n(l_quizchamp,0,1)
+    cpc_tetris = mm.ratio_list_array_n(l_tetris,0,1)
+    cpc_npuzzle = mm.ratio_list_array_n(l_npuzzle,0,1)
+    cpc_gotham = mm.ratio_list_array_n(l_gotham,0,1)
+    cpc_surfing = mm.ratio_list_array_n(l_surfing,0,1)
+    cpc_panda = mm.ratio_list_array_n(l_panda,0,1)
+    cpc_space = mm.ratio_list_array_n(l_space,0,1)
+    cpc_rise = mm.ratio_list_array_n(l_rise,0,1)
+    cpc_runner = mm.ratio_list_array_n(l_runner,0,1)
+    cpc_ninja = mm.ratio_list_array_n(l_ninja,0,1)
+    cpc_pong = mm.ratio_list_array_n(l_pong,0,1)
+    cpc_samurai = mm.ratio_list_array_n(l_samurai,0,1)
+    cpc_ortho = mm.ratio_list_array_n(l_ortho,0,1)
+    cpc_ludo = mm.ratio_list_array_n(l_ludo,0,1)
+    cpc_tomb = mm.ratio_list_array_n(l_tomb,0,1)
+    cpc_bubble = mm.ratio_list_array_n(l_bubble,0,1)
+    cpc_snow = mm.ratio_list_array_n(l_snow,0,1)
+    cpc_ping = mm.ratio_list_array_n(l_ping,0,1)
+    cpc_heroic = mm.ratio_list_array_n(l_heroic,0,1)
+    cpc_hoophop = mm.ratio_list_array_n(l_hoophop,0,1)
+    cpc_candy = mm.ratio_list_array_n(l_candy,0,1)
+    cpc_shark = mm.ratio_list_array_n(l_shark,0,1)
+    cpc_deen = mm.ratio_list_array_n(l_deen,0,1)
+    cpc_water = mm.ratio_list_array_n(l_water,0,1)
+    cpc_word = mm.ratio_list_array_n(l_word,0,1)
+    #cpc_quizbd = mm.ratio_list_array_n(l_quizbd,0,1)
+
+    ctr_deal = mm.ratio_list_array_n(l_deal,3,2)
+    ctr_medha = mm.ratio_list_array_n(l_medha,3,2)
+    ctr_quiztime = mm.ratio_list_array_n(l_quiztime,3,2)
+    ctr_quizbd = mm.ratio_list_array_n(l_quizbd,3,2)
+    ctr_quizgiri = mm.ratio_list_array_n(l_quizgiri,3,2)
+    ctr_quizmind = mm.ratio_list_array_n(l_quizmind,3,2)
+    ctr_quizpro = mm.ratio_list_array_n(l_quizpro,3,2)
+    ctr_shera = mm.ratio_list_array_n(l_shera,3,2)
+    ctr_tukhor = mm.ratio_list_array_n(l_tukhor,3,2)
+    ctr_tota = mm.ratio_list_array_n(l_tota,3,2)
+    ctr_quizee = mm.ratio_list_array_n(l_quizee,3,2)
+    ctr_jeeto = mm.ratio_list_array_n(l_jeeto,3,2)
+    ctr_quizchamp = mm.ratio_list_array_n(l_quizchamp,3,2)
+    ctr_tetris = mm.ratio_list_array_n(l_tetris,3,2)
+    ctr_npuzzle = mm.ratio_list_array_n(l_npuzzle,3,2)
+    ctr_gotham = mm.ratio_list_array_n(l_gotham,3,2)
+    ctr_surfing = mm.ratio_list_array_n(l_surfing,3,2)
+    ctr_panda = mm.ratio_list_array_n(l_panda,3,2)
+    ctr_space = mm.ratio_list_array_n(l_space,3,2)
+    ctr_rise = mm.ratio_list_array_n(l_rise,3,2)
+    ctr_runner = mm.ratio_list_array_n(l_runner,3,2)
+    ctr_ninja = mm.ratio_list_array_n(l_ninja,3,2)
+    ctr_pong = mm.ratio_list_array_n(l_pong,3,2)
+    ctr_samurai = mm.ratio_list_array_n(l_samurai,3,2)
+    ctr_ortho = mm.ratio_list_array_n(l_ortho,3,2)
+    ctr_ludo = mm.ratio_list_array_n(l_ludo,3,2)
+    ctr_tomb = mm.ratio_list_array_n(l_tomb,3,2)
+    ctr_bubble = mm.ratio_list_array_n(l_bubble,3,2)
+    ctr_snow = mm.ratio_list_array_n(l_snow,3,2)
+    ctr_ping = mm.ratio_list_array_n(l_ping,3,2)
+    ctr_heroic = mm.ratio_list_array_n(l_heroic,3,2)
+    ctr_hoophop = mm.ratio_list_array_n(l_hoophop,3,2)
+    ctr_candy = mm.ratio_list_array_n(l_candy,3,2)
+    ctr_shark = mm.ratio_list_array_n(l_shark,3,2)
+    ctr_deen = mm.ratio_list_array_n(l_deen,3,2)
+    ctr_water = mm.ratio_list_array_n(l_water,3,2)
+    ctr_word = mm.ratio_list_array_n(l_word,3,2)
+    #ctr_quizbd = mm.ratio_list_array_n(l_quizbd,3,2)
+
+
+    print("")
+    l_ratio.append(["TikTok:", title_date, " ", " " ])
+    l_ratio.append(["Products", "Cost", "Conversion", "CPC", "Impression", "Clicks", "CTR"])
+    l_ratio.append(["Deal_Finder", cost_deal, conversion_deal, cpc_deal, impression_deal, click_deal,ctr_deal])
+    l_ratio.append(["Medha", cost_medha, conversion_medha, cpc_medha, impression_medha, click_medha,ctr_medha])
+    l_ratio.append(["Quiztime", cost_quiztime, conversion_quiztime, cpc_quiztime, impression_quiztime, click_quiztime,ctr_quiztime])
+    l_ratio.append(["QuizBD", cost_quizbd, conversion_quizbd, cpc_quizbd, impression_quizbd, click_quizbd,ctr_quizbd])
+    l_ratio.append(["Quizgiri", cost_quizgiri, conversion_quizgiri, cpc_quizgiri, impression_quizgiri, click_quizgiri,ctr_quizgiri])
+    l_ratio.append(["Quizmind", cost_quizmind, conversion_quizmind, cpc_quizmind, impression_quizmind, click_quizmind,ctr_quizmind])
+    l_ratio.append(["Quizpro", cost_quizpro, conversion_quizpro, cpc_quizpro, impression_quizpro, click_quizpro,ctr_quizpro])
+    l_ratio.append(["Shera", cost_shera, conversion_shera, cpc_shera, impression_shera, click_shera,ctr_shera])
+    l_ratio.append(["Tukhor", cost_tukhor, conversion_tukhor, cpc_tukhor, impression_tukhor, click_tukhor,ctr_tukhor])
+    l_ratio.append(["Tota", cost_tota, conversion_tota, cpc_tota, impression_tota, click_tota,ctr_tota])
+    l_ratio.append(["Quizee", cost_quizee, conversion_quizee, cpc_quizee, impression_quizee, click_quizee,ctr_quizee])
+    l_ratio.append(["Jeeto", cost_jeeto, conversion_jeeto, cpc_jeeto, impression_jeeto, click_jeeto,ctr_jeeto])
+    l_ratio.append(["Quizchamp", cost_quizchamp, conversion_quizchamp, cpc_quizchamp, impression_quizchamp, click_quizchamp,ctr_quizchamp])
+    l_ratio.append(["Tetris", cost_tetris, conversion_tetris, cpc_tetris, impression_tetris, click_tetris,ctr_tetris])
+    l_ratio.append(["Npuzzle", cost_npuzzle, conversion_npuzzle, cpc_npuzzle, impression_npuzzle, click_npuzzle,ctr_npuzzle])
+    l_ratio.append(["Gotham", cost_gotham, conversion_gotham, cpc_gotham, impression_gotham, click_gotham,ctr_gotham])
+    l_ratio.append(["Surfing", cost_surfing, conversion_surfing, cpc_surfing, impression_surfing, click_surfing,ctr_surfing])
+    l_ratio.append(["Panda", cost_panda, conversion_panda, cpc_panda, impression_panda, click_panda,ctr_panda])
+    l_ratio.append(["Space", cost_space, conversion_space, cpc_space, impression_space, click_space,ctr_space])
+    l_ratio.append(["Rise", cost_rise, conversion_rise, cpc_rise, impression_rise, click_rise,ctr_rise])
+    l_ratio.append(["Runner", cost_runner, conversion_runner, cpc_runner, impression_runner, click_runner,ctr_runner])
+    l_ratio.append(["Ninja", cost_ninja, conversion_ninja, cpc_ninja, impression_ninja, click_ninja,ctr_ninja])
+    l_ratio.append(["Pong", cost_pong, conversion_pong, cpc_pong, impression_pong, click_pong,ctr_pong])
+    l_ratio.append(["Samurai", cost_samurai, conversion_samurai, cpc_samurai, impression_samurai, click_samurai,ctr_samurai])
+    l_ratio.append(["Ortho", cost_ortho, conversion_ortho, cpc_ortho, impression_ortho, click_ortho,ctr_ortho])
+    l_ratio.append(["Ludo", cost_ludo, conversion_ludo, cpc_ludo, impression_ludo, click_ludo,ctr_ludo])
+    l_ratio.append(["Tomb", cost_tomb, conversion_tomb, cpc_tomb, impression_tomb, click_tomb,ctr_tomb])
+    l_ratio.append(["Bubble", cost_bubble, conversion_bubble, cpc_bubble, impression_bubble, click_bubble,ctr_bubble])
+    l_ratio.append(["Snow", cost_snow, conversion_snow, cpc_snow, impression_snow, click_snow,ctr_snow])
+    l_ratio.append(["Ping", cost_ping, conversion_ping, cpc_ping, impression_ping, click_ping,ctr_ping])
+    l_ratio.append(["Heroic", cost_heroic, conversion_heroic, cpc_heroic, impression_heroic, click_heroic,ctr_heroic])
+    l_ratio.append(["Hoophop", cost_hoophop, conversion_hoophop, cpc_hoophop, impression_hoophop, click_hoophop,ctr_hoophop])
+    l_ratio.append(["Candy", cost_candy, conversion_candy, cpc_candy, impression_candy, click_candy,ctr_candy])
+    l_ratio.append(["Shark", cost_shark, conversion_shark, cpc_shark, impression_shark, click_shark,ctr_shark])
+    l_ratio.append(["Deen", cost_deen, conversion_deen, cpc_deen, impression_deen, click_deen,ctr_deen])
+    l_ratio.append(["Water", cost_water, conversion_water, cpc_water, impression_water, click_water,ctr_water])
+    l_ratio.append(["Word", cost_word, conversion_word, cpc_word, impression_word, click_word,ctr_word])
+    #l_ratio.append(["Quiz BD", cost_quizbd, conversion_quizbd, cpc_quizbd, impression_quizbd, click_quizbd,ctr_quizbd])
+
+    
+
+###    l_ratio.append(["word ", cost_word, conversion_word, cpc_word, icr_word, irr_word])
+
+    w_file_ratio = "tiktok_ad_performance_productwise_" + title_date + ".csv"
+    w_path_ratio = path_write + "//" + w_file_ratio
+    mm.write_list( w_path_ratio, l_ratio)
+
+
