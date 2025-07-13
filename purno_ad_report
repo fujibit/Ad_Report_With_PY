@@ -1,0 +1,186 @@
+
+
+import my_methods_csv as mm
+
+
+if __name__ == "__main__":
+
+
+# dir
+
+    path_raw_read = r"C:\Revenue & Cost\DOC_2025\Ad Cost 2025\Mar 2025"
+    path_read = mm.path_edit(path_raw_read)
+    dir_list_cost = mm.os.listdir(path_read)
+
+
+# common tag
+
+    year = "2025"
+    usd_rate = 126.00 # dollar
+
+    date_tag = "31"
+    month_tag = "March"
+        
+    type_report = "monthly" # small case
+    month = "Month: March, 2025" # update u_tag
+    
+    date = date_tag + "-" + month_tag + "-" + year 
+    
+    
+##    cmd = "update --- day --- "
+##    day = 2 # 31 Apr
+##    t = str(mm.today()- mm.timedelta(days = day))
+    
+
+
+# Meta
+
+    file_type = ".csv"
+    null_type = ")"
+    group_tag = "Nagorik-"
+    tag_name_meta = "actions:offsite_conversion.custom"
+    date_tag_meta = "-" + date_tag + "-"
+
+    u_tag_meta = "-Ads-1-Mar-2025-31-Mar-2025.csv" # for month report / Specific report
+        
+    l = []
+    l_cost = []
+    l_conv = []
+
+    
+    if type_report == "daily":
+        for x in dir_list_cost:
+            if file_type in x and null_type not in x and group_tag in x and month_tag in x:# and "_u" in x:# and u_tag_meta in x:
+                a = path_read + "//" + x
+                l.append([a])
+                
+    elif type_report == "monthly":
+        for x in dir_list_cost:
+            if u_tag_meta in x:
+                a = path_read + "//" + x
+                l.append([a])
+
+        
+
+    for f in range(len(l)):
+        
+        file = l[f][0]
+        data = mm.read_data(file)
+
+        for row in range(len(data)):
+
+            ad_name = data[row][2]
+            ad_set_name = data[row][4]
+            ad = (ad_name + ad_set_name).lower()
+            
+            conv = data[row][11]
+            result_indicator = data[row][12]
+            reach = data[row][13]
+            cost = data[row][19]
+            
+
+            if "quizmind" in ad or "quiztime" in ad or "quiz mind" in ad or "quiz time" in ad or "qt" in ad or "qm" in ad or "tomb" in ad or "candy" in ad or "snow" in ad or "bubble" in ad or "ping pong" in ad or " ping" in ad or ("ping " in ad and "shopping" not in ad and "jumping" not in ad) or "hoophop" in ad or " hop" in ad or " hoop" in ad or "hoop " in ad or "hop " in ad or "heroic" in ad or "dash" in ad or "water sort" in ad or "word finder" in ad or "quizbd" in ad or "quiz bd" in ad:
+                l_cost.append(cost)
+                #print(ad_name,"+++", cost) 
+
+    
+    s_cost = mm.list_sum_space_xl(l_cost)
+
+    print("")
+    
+    if type_report == "daily":
+        print(date)# print(month)
+    elif type_report == "monthly":
+        print(month)
+    
+    print("")
+    print("--- Meta Ad ---")
+    print("")
+    print("Cost", ":", "", "Tk.", mm.put_comma_ban(int(s_cost)))
+            
+
+# Google 
+
+    file_type = ".csv"
+    null_type = ")"
+    group_tag = "Campaign report"
+    
+    u_tag_google = "Campaign report Month" # for month report / Specific report
+    
+    tag_name_google = "Total: Account"
+    tag_type = "Performance Max"
+
+    l_g = []
+    l_cost_g = []
+    l__g = []
+
+
+    if type_report == "daily":
+        for x in dir_list_cost:
+            if file_type in x and null_type not in x and group_tag in x and month_tag in x:# and u_tag_google in x:
+                a = path_read + "//" + x
+                l_g.append([a])
+                
+    elif type_report == "monthly":
+        for x in dir_list_cost:
+            if u_tag_google in x:
+                a = path_read + "//" + x
+                l_g.append([a])
+
+
+    
+    for f in range(len(l_g)):
+        
+        file = l_g[f][0]
+        data = mm.read_data(file)
+
+        for row in range(3,len(data)):
+
+            campaign_status = data[row][0]
+            campaign = data[row][1]
+            ad_google = campaign.lower()
+            
+            ad_type = data[row][9]
+            impression = data[row][10]
+            cost = data[row][14]
+            # = data[row][21]
+            conv = data[row][21]
+
+            if campaign != "":
+                if "quizmind" in ad_google or "quiztime" in ad_google or "quiz mind" in ad_google or "quiz time" in ad_google or "qt" in ad_google or "qm" in ad_google or "tomb" in ad_google or "candy" in ad_google or "snow" in ad_google or "bubble" in ad_google or "ping pong" in ad_google or " ping" in ad_google or ("ping " in ad and "shopping" not in ad_google and "jumping" not in ad_google) or "hoophop" in ad_google or " hop" in ad_google or " hoop" in ad_google or "hoop " in ad_google or "hop " in ad_google or "heroic" in ad_google or "dash" in ad_google or "water sort" in ad_google or "word finder" in ad_google or "quizbd" in ad_google or "quiz bd" in ad_google:
+                    l_cost_g.append(cost)
+
+                                
+                
+    s_cost_g = mm.list_sum_space_xl(l_cost_g)*usd_rate
+    
+    print("")
+    print("--- Google Ad ---")
+    print("")
+    print("Cost", ":", "", "Tk.", mm.put_comma_ban(int(s_cost_g)))
+    
+       
+    t_cost = s_cost + s_cost_g
+    
+    print("")
+    print("--- *Meta + Google* ---")
+    print("")
+    print("Cost", ":", "", "Tk.", mm.put_comma_ban(int(t_cost)))
+
+    print("")
+    print("[ $1 = Tk." + str(usd_rate) + ", Assumed ]")
+
+
+    print("")
+    print(len(l))
+    
+    for i in range(len(l)):
+        print(l[i])
+        
+    print("")
+    print(len(l_g))
+    
+    for i in range(len(l_g)):
+        print(l_g[i])
+
+
